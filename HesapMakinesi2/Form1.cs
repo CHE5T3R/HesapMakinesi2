@@ -15,11 +15,14 @@ namespace HesapMakinesi2
         bool startWithMinus;
         bool moreThan2Operator;
 
+        // tek tek bütün deðerleri kontrol et. Sýfýrlaman gerekenleri sýfýrla.
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+
 
 
         private void btn0_Click(object sender, EventArgs e)
@@ -144,14 +147,15 @@ namespace HesapMakinesi2
 
 
 
+
         private void btnComma_Click(object sender, EventArgs e)
         {
             if (textBox.Text.Length > 0)
             {
-                if (afterOperator)
+                if (textBox.Text[^1] == '+' || textBox.Text[^1] == '-' || textBox.Text[^1] == 'X' || textBox.Text[^1] == '/')
                 {
                     textBox.Text += "0,";
-                    afterOperator = false ;
+                    afterOperator = false;
                 }
                 else if (afterEqual)
                 {
@@ -163,6 +167,7 @@ namespace HesapMakinesi2
                 }
             }
             else
+
             {
                 textBox.Text = "0,";
             }
@@ -175,7 +180,7 @@ namespace HesapMakinesi2
 
 
 
-        // ?
+        
         private void btnPlus_Click(object sender, EventArgs e)
         {
             if (textBox.Text.Length > 0)
@@ -198,28 +203,61 @@ namespace HesapMakinesi2
 
         }
 
-        // þu eksiyle baþlama iþini düzenle
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            if (textBox.Text.Length > 0)
+            {
 
-            if (!afterOperator)
+                if (textBox.Text[^1] == '-')
+                {
+                    textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
+                    textBox.Text += "+";
+                    afterOperator = true;
+                    afterEqual = false;
+                }
+                else if (textBox.Text[^1] == '+')
+                {
+                    textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
+                    textBox.Text += "-";
+                    afterOperator = true;
+                    afterEqual = false;
+                }
+                else if (textBox.Text[^1] == ',')
+                {
+                    textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
+                    textBox.Text += "-";
+                    afterOperator = true;
+                    afterEqual = false;
+                }
+                else
+                {
+                    textBox.Text += "-";
+                    afterOperator = true;
+                    afterEqual = false;
+                }
+
+            }
+            else
             {
                 textBox.Text += "-";
                 afterOperator = true;
                 afterEqual = false;
             }
-            else
-            {
-                textBox.Text += "(-";
-            }
-
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
             if (textBox.Text.Length > 0)
             {
-                if (!afterOperator)
+                if (textBox.Text[textBox.Text.Length - 1] == ',')
+                {
+                    textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
+                    textBox.Text += 'x';
+                    afterOperator = true;
+                    afterEqual = false;
+
+                }
+                else if (!afterOperator)
                 {
                     textBox.Text += "x";
                     afterOperator = true;
@@ -232,7 +270,15 @@ namespace HesapMakinesi2
         {
             if (textBox.Text.Length > 0)
             {
-                if (!afterOperator)
+                if (textBox.Text[textBox.Text.Length - 1] == ',')
+                {
+                    textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
+                    textBox.Text += '/';
+                    afterOperator = true;
+                    afterEqual = false;
+
+                }
+                else if (!afterOperator)
                 {
                     textBox.Text += "/";
                     afterOperator = true;
@@ -241,10 +287,16 @@ namespace HesapMakinesi2
             }
         }
 
+        // dFindDouble 0 ise tanýmsýz döndür
+        // ikisi de 0 ise belirsiz döndür
         private void btnEqual_Click(object sender, EventArgs e)
         {
             text = textBox.Text;
-            if (text[0] == '-')
+            if (text[^1] == ',')
+            {
+                text = text.Remove(text.Length - 1, 1);
+            }
+            if (text[0] == '-' && text.Length != 0)
             {
                 text = '0' + text;
                 startWithMinus = true;
@@ -252,12 +304,36 @@ namespace HesapMakinesi2
             List<object> listOperators = new List<object>();
             for (int i = 0; i < text.Length; i++)
             {
-                if (text[i] == '+' || text[i] == '-' || text[i] == 'x' || text[i] == '/')
+                if (text.Length - i > 1)
                 {
-                    listOperators.Add(text[i]);
+                    if (text.Substring(i, 2) == "x-" || text.Substring(i, 2) == "/-")
+                    {
+                        listOperators.Add(text[i]);
+                        i++;
+                    }
+                    else if (text[i] == '+' || text[i] == 'x' || text[i] == '/')
+                    {
+                        listOperators.Add(text[i]);
+                    }
+                    else if (text[i] == '-')
+                    {
+                        if (text.Substring(i - 1, 2) == "x-" || text.Substring(i - 1, 2) == "/-")
+                        {
+
+                        }
+                        listOperators.Add('+');
+                    }
+                }
+                else
+                {
+                    if (text[i] == '+' || text[i] == 'x' || text[i] == '/')
+                    {
+                        listOperators.Add(text[i]);
+                    }
                 }
             }
-            string text2 = text.Replace('+', ' ').Replace('-', ' ').Replace('x', ' ').Replace('/', ' ');
+            string text1 = text.Replace("x-", "-").Replace("/-", "-");
+            string text2 = text1.Replace('+', ' ').Replace('x', ' ').Replace('/', ' ').Replace("-", " -");
             string[] numbers = text2.Split(' ');
             List<object> listNumbers = new List<object>();
             foreach (string number in numbers)
@@ -265,11 +341,11 @@ namespace HesapMakinesi2
                 listNumbers.Add(number);
             }
 
-            if (startWithMinus == true && listOperators.Count >= 3)
+            if (startWithMinus == true && listNumbers.Count >= 3)
             {
                 moreThan2Operator = true;
             }
-            else if (listOperators.Count >= 2)
+            else if (listNumbers.Count >= 2 && listNumbers[listNumbers.Count - 1] != "")
             {
                 moreThan2Operator = true;
             }
@@ -305,7 +381,7 @@ namespace HesapMakinesi2
                         listOperators.RemoveAt(dFind);
                     }
                 }
-                while (listOperators.Contains('+') || listOperators.Contains('-'))
+                while (listOperators.Contains('+'))
                 {
                     double pMDouble = double.Parse((string)listNumbers[0]);
                     double pMDouble1 = double.Parse((string)listNumbers[1]);
@@ -319,15 +395,6 @@ namespace HesapMakinesi2
                         listNumbers.RemoveAt(1);
                         listOperators.RemoveAt(0);
                     }
-                    else
-                    {
-                        double sonuçDouble = pMDouble - pMDouble1;
-                        string sonuç = sonuçDouble.ToString();
-                        listNumbers[0] = sonuç;
-                        listNumbers.RemoveAt(1);
-                        listOperators.RemoveAt(0);
-                    }
-
                 }
                 textBox.Text = listNumbers[0].ToString();
                 afterOperator = false;
@@ -338,20 +405,22 @@ namespace HesapMakinesi2
 
 
 
-        // bunu bi kontrol et kesin eksik vardýr
+ 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             afterEqual = false;
             if (textBox.Text.Length != 0)
             {
-                //if (textBox.Text.Length >= 2 && textBox.Text[textBox.Text.Length - 2] == ',')
-                //{
-                //    textBox.Text = textBox.Text.Remove(textBox.Text.Length - 2, 2);
-                //}
-                //else
+                textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
+                if (textBox.Text[^1] == '+' || textBox.Text[^1] == '-' || textBox.Text[^1] == 'x' || textBox.Text[^1] == '/')
                 {
-                    textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
+                    afterOperator = true;
                 }
+                else
+                {
+                    afterOperator = false;
+                }
+
             }
         }
 

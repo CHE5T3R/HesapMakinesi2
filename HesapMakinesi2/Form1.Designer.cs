@@ -331,6 +331,7 @@
             Controls.Add(btnSign);
             Controls.Add(btn0);
             Controls.Add(btnComma);
+            MaximizeBox = false;
             Name = "HesapMakinesi";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
