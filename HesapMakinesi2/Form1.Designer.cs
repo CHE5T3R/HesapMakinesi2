@@ -30,7 +30,6 @@
         {
             btnComma = new Button();
             btn0 = new Button();
-            btnSign = new Button();
             btnPlus = new Button();
             btnMinus = new Button();
             btn3 = new Button();
@@ -48,14 +47,13 @@
             btnDelete = new Button();
             btnAllClear = new Button();
             textBox = new TextBox();
-            textBox2 = new TextBox();
             SuspendLayout();
             // 
             // btnComma
             // 
             btnComma.Anchor = AnchorStyles.None;
             btnComma.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnComma.Location = new Point(9, 503);
+            btnComma.Location = new Point(164, 505);
             btnComma.Name = "btnComma";
             btnComma.Size = new Size(70, 70);
             btnComma.TabIndex = 0;
@@ -67,31 +65,19 @@
             // 
             btn0.Anchor = AnchorStyles.None;
             btn0.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn0.Location = new Point(85, 503);
+            btn0.Location = new Point(12, 505);
             btn0.Name = "btn0";
-            btn0.Size = new Size(70, 70);
+            btn0.Size = new Size(146, 70);
             btn0.TabIndex = 0;
             btn0.Text = "0";
             btn0.UseVisualStyleBackColor = true;
             btn0.Click += btn0_Click;
             // 
-            // btnSign
-            // 
-            btnSign.Anchor = AnchorStyles.None;
-            btnSign.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnSign.Location = new Point(161, 503);
-            btnSign.Name = "btnSign";
-            btnSign.Size = new Size(70, 70);
-            btnSign.TabIndex = 0;
-            btnSign.Text = "+/-";
-            btnSign.UseVisualStyleBackColor = true;
-            btnSign.Click += btnSign_Click;
-            // 
             // btnPlus
             // 
             btnPlus.Anchor = AnchorStyles.None;
             btnPlus.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnPlus.Location = new Point(237, 503);
+            btnPlus.Location = new Point(240, 505);
             btnPlus.Name = "btnPlus";
             btnPlus.Size = new Size(70, 70);
             btnPlus.TabIndex = 0;
@@ -103,7 +89,7 @@
             // 
             btnMinus.Anchor = AnchorStyles.None;
             btnMinus.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnMinus.Location = new Point(237, 427);
+            btnMinus.Location = new Point(240, 429);
             btnMinus.Name = "btnMinus";
             btnMinus.Size = new Size(70, 70);
             btnMinus.TabIndex = 0;
@@ -115,7 +101,7 @@
             // 
             btn3.Anchor = AnchorStyles.None;
             btn3.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn3.Location = new Point(161, 427);
+            btn3.Location = new Point(164, 429);
             btn3.Name = "btn3";
             btn3.Size = new Size(70, 70);
             btn3.TabIndex = 0;
@@ -127,7 +113,7 @@
             // 
             btn2.Anchor = AnchorStyles.None;
             btn2.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn2.Location = new Point(85, 427);
+            btn2.Location = new Point(88, 429);
             btn2.Name = "btn2";
             btn2.Size = new Size(70, 70);
             btn2.TabIndex = 0;
@@ -139,7 +125,7 @@
             // 
             btn1.Anchor = AnchorStyles.None;
             btn1.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn1.Location = new Point(9, 427);
+            btn1.Location = new Point(12, 429);
             btn1.Name = "btn1";
             btn1.Size = new Size(70, 70);
             btn1.TabIndex = 0;
@@ -151,7 +137,7 @@
             // 
             btn4.Anchor = AnchorStyles.None;
             btn4.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn4.Location = new Point(9, 351);
+            btn4.Location = new Point(12, 353);
             btn4.Name = "btn4";
             btn4.Size = new Size(70, 70);
             btn4.TabIndex = 0;
@@ -163,7 +149,7 @@
             // 
             btn5.Anchor = AnchorStyles.None;
             btn5.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn5.Location = new Point(85, 351);
+            btn5.Location = new Point(88, 353);
             btn5.Name = "btn5";
             btn5.Size = new Size(70, 70);
             btn5.TabIndex = 0;
@@ -175,7 +161,7 @@
             // 
             btn6.Anchor = AnchorStyles.None;
             btn6.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn6.Location = new Point(161, 351);
+            btn6.Location = new Point(164, 353);
             btn6.Name = "btn6";
             btn6.Size = new Size(70, 70);
             btn6.TabIndex = 0;
@@ -187,7 +173,7 @@
             // 
             btnMultiply.Anchor = AnchorStyles.None;
             btnMultiply.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnMultiply.Location = new Point(237, 351);
+            btnMultiply.Location = new Point(240, 353);
             btnMultiply.Name = "btnMultiply";
             btnMultiply.Size = new Size(70, 70);
             btnMultiply.TabIndex = 0;
@@ -199,7 +185,7 @@
             // 
             btnDivisor.Anchor = AnchorStyles.None;
             btnDivisor.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnDivisor.Location = new Point(237, 275);
+            btnDivisor.Location = new Point(240, 277);
             btnDivisor.Name = "btnDivisor";
             btnDivisor.Size = new Size(70, 70);
             btnDivisor.TabIndex = 0;
@@ -211,7 +197,7 @@
             // 
             btn9.Anchor = AnchorStyles.None;
             btn9.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn9.Location = new Point(161, 275);
+            btn9.Location = new Point(164, 277);
             btn9.Name = "btn9";
             btn9.Size = new Size(70, 70);
             btn9.TabIndex = 0;
@@ -223,7 +209,7 @@
             // 
             btn8.Anchor = AnchorStyles.None;
             btn8.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn8.Location = new Point(85, 275);
+            btn8.Location = new Point(88, 277);
             btn8.Name = "btn8";
             btn8.Size = new Size(70, 70);
             btn8.TabIndex = 0;
@@ -235,7 +221,7 @@
             // 
             btn7.Anchor = AnchorStyles.None;
             btn7.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btn7.Location = new Point(9, 275);
+            btn7.Location = new Point(12, 277);
             btn7.Name = "btn7";
             btn7.Size = new Size(70, 70);
             btn7.TabIndex = 0;
@@ -247,7 +233,7 @@
             // 
             btnEqual.Anchor = AnchorStyles.None;
             btnEqual.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnEqual.Location = new Point(313, 427);
+            btnEqual.Location = new Point(316, 429);
             btnEqual.Name = "btnEqual";
             btnEqual.Size = new Size(70, 146);
             btnEqual.TabIndex = 0;
@@ -259,7 +245,7 @@
             // 
             btnDelete.Anchor = AnchorStyles.None;
             btnDelete.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnDelete.Location = new Point(313, 351);
+            btnDelete.Location = new Point(316, 353);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(70, 70);
             btnDelete.TabIndex = 0;
@@ -271,7 +257,7 @@
             // 
             btnAllClear.Anchor = AnchorStyles.None;
             btnAllClear.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold);
-            btnAllClear.Location = new Point(313, 275);
+            btnAllClear.Location = new Point(316, 277);
             btnAllClear.Name = "btnAllClear";
             btnAllClear.Size = new Size(70, 70);
             btnAllClear.TabIndex = 0;
@@ -282,26 +268,14 @@
             // textBox
             // 
             textBox.Anchor = AnchorStyles.None;
-            textBox.Font = new Font("Segoe UI", 27F);
-            textBox.Location = new Point(9, 10);
+            textBox.Font = new Font("Segoe UI", 22F);
+            textBox.Location = new Point(12, 12);
             textBox.Multiline = true;
             textBox.Name = "textBox";
-            textBox.Size = new Size(374, 207);
+            textBox.Size = new Size(374, 259);
             textBox.TabIndex = 1;
             textBox.TextAlign = HorizontalAlignment.Right;
             textBox.TextChanged += textBox_TextChanged;
-            // 
-            // textBox2
-            // 
-            textBox2.Anchor = AnchorStyles.None;
-            textBox2.BackColor = SystemColors.ControlLightLight;
-            textBox2.Font = new Font("Segoe UI", 13F);
-            textBox2.Location = new Point(9, 223);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(374, 36);
-            textBox2.TabIndex = 2;
-            textBox2.TextAlign = HorizontalAlignment.Right;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // HesapMakinesi
             // 
@@ -309,8 +283,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(399, 594);
-            Controls.Add(textBox2);
+            ClientSize = new Size(398, 594);
             Controls.Add(textBox);
             Controls.Add(btn7);
             Controls.Add(btn8);
@@ -328,13 +301,13 @@
             Controls.Add(btn3);
             Controls.Add(btnMinus);
             Controls.Add(btnPlus);
-            Controls.Add(btnSign);
             Controls.Add(btn0);
             Controls.Add(btnComma);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "HesapMakinesi";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Hesap Makinesi";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -343,7 +316,6 @@
 
         private Button btnComma;
         private Button btn0;
-        private Button btnSign;
         private Button btnPlus;
         private Button btnMinus;
         private Button btn3;
@@ -361,6 +333,5 @@
         private Button btnDelete;
         private Button btnAllClear;
         private TextBox textBox;
-        private TextBox textBox2;
     }
 }

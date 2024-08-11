@@ -9,11 +9,11 @@ namespace HesapMakinesi2
 
         //Deðerler
         string text;
-        bool izin = false;
         bool afterOperator = false;
         bool afterEqual = false;
         bool startWithMinus;
         bool moreThan2Operator;
+        bool afterTorB = false;
 
         // tek tek bütün deðerleri kontrol et. Sýfýrlaman gerekenleri sýfýrla.
 
@@ -21,42 +21,42 @@ namespace HesapMakinesi2
         {
 
         }
-
+     
 
 
 
         private void btn0_Click(object sender, EventArgs e)
         {
-            if (afterEqual)
+            if (afterEqual || afterTorB)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "0";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            if (afterEqual)
+            if (afterEqual || afterTorB)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "1";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
-            if (afterEqual)
+            if (afterEqual || afterTorB)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "2";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
@@ -65,10 +65,10 @@ namespace HesapMakinesi2
         {
             if (afterEqual)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "3";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
@@ -77,10 +77,10 @@ namespace HesapMakinesi2
         {
             if (afterEqual)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "4";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
@@ -89,10 +89,10 @@ namespace HesapMakinesi2
         {
             if (afterEqual)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "5";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
@@ -101,10 +101,10 @@ namespace HesapMakinesi2
         {
             if (afterEqual)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "6";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
@@ -113,10 +113,10 @@ namespace HesapMakinesi2
         {
             if (afterEqual)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "7";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
@@ -125,10 +125,10 @@ namespace HesapMakinesi2
         {
             if (afterEqual)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "8";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
@@ -137,10 +137,10 @@ namespace HesapMakinesi2
         {
             if (afterEqual)
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
+                afterTorB = false;
             }
             textBox.Text += "9";
-            bool izin = true;
             afterOperator = false;
             afterEqual = false;
         }
@@ -150,6 +150,11 @@ namespace HesapMakinesi2
 
         private void btnComma_Click(object sender, EventArgs e)
         {
+            if (afterTorB)
+            {
+                textBox.Text = string.Empty;
+                afterTorB = false;
+            }
             if (textBox.Text.Length > 0)
             {
                 if (textBox.Text[^1] == '+' || textBox.Text[^1] == '-' || textBox.Text[^1] == 'X' || textBox.Text[^1] == '/')
@@ -171,18 +176,19 @@ namespace HesapMakinesi2
             {
                 textBox.Text = "0,";
             }
-        }
-
-        private void btnSign_Click(object sender, EventArgs e)
-        {
-
+            afterTorB = false;
         }
 
 
 
-        
+
         private void btnPlus_Click(object sender, EventArgs e)
         {
+            if (afterTorB)
+            {
+                textBox.Text = string.Empty;
+                afterTorB = false;
+            }
             if (textBox.Text.Length > 0)
             {
                 if (textBox.Text[textBox.Text.Length - 1] == ',')
@@ -200,11 +206,15 @@ namespace HesapMakinesi2
                     afterEqual = false;
                 }
             }
-
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            if (afterTorB)
+            {
+                textBox.Text = string.Empty;
+                afterTorB = false;
+            }
             if (textBox.Text.Length > 0)
             {
 
@@ -247,6 +257,11 @@ namespace HesapMakinesi2
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
+            if (afterTorB)
+            {
+                textBox.Text = string.Empty;
+                afterTorB = false;
+            }
             if (textBox.Text.Length > 0)
             {
                 if (textBox.Text[textBox.Text.Length - 1] == ',')
@@ -268,6 +283,11 @@ namespace HesapMakinesi2
 
         private void btnDivisor_Click(object sender, EventArgs e)
         {
+            if (afterTorB)
+            {
+                textBox.Text = string.Empty;
+                afterTorB = false;
+            }
             if (textBox.Text.Length > 0)
             {
                 if (textBox.Text[textBox.Text.Length - 1] == ',')
@@ -287,16 +307,23 @@ namespace HesapMakinesi2
             }
         }
 
-        // dFindDouble 0 ise tanýmsýz döndür
-        // ikisi de 0 ise belirsiz döndür
+
+
+
         private void btnEqual_Click(object sender, EventArgs e)
         {
+            if (afterTorB)
+            {
+                textBox.Text = string.Empty;
+                afterTorB = false;
+            }
             text = textBox.Text;
-            if (text[^1] == ',')
+
+            if (text.Length > 0 && text[^1] == ',')
             {
                 text = text.Remove(text.Length - 1, 1);
             }
-            if (text[0] == '-' && text.Length != 0)
+            if (text[0] == '-')
             {
                 text = '0' + text;
                 startWithMinus = true;
@@ -341,11 +368,11 @@ namespace HesapMakinesi2
                 listNumbers.Add(number);
             }
 
-            if (startWithMinus == true && listNumbers.Count >= 3)
+            if (startWithMinus == true && listNumbers.Count >= 3 && listNumbers[^1] != "")
             {
                 moreThan2Operator = true;
             }
-            else if (listNumbers.Count >= 2 && listNumbers[listNumbers.Count - 1] != "")
+            else if (listNumbers.Count >= 2 && listNumbers[^1] != "")
             {
                 moreThan2Operator = true;
             }
@@ -372,13 +399,28 @@ namespace HesapMakinesi2
                     {
                         float dFindDouble = float.Parse((string)listNumbers[dFind]);
                         float dFindDouble1 = float.Parse((string)listNumbers[dFind + 1]);
-                        // dFindDouble 0 ise tanýmsýz döndür
-                        // ikisi de 0 ise belirsiz döndür
-                        float sonuçDouble = dFindDouble / dFindDouble1;
-                        string sonuç = sonuçDouble.ToString();
-                        listNumbers[dFind] = sonuç;
-                        listNumbers.RemoveAt(dFind + 1);
-                        listOperators.RemoveAt(dFind);
+                        if (dFindDouble == 0 && dFindDouble1 == 0)
+                        {
+                            textBox.Text = "Hatalý iþlem 0/0: belirsiz";
+                            listNumbers.Clear();
+                            listOperators.Clear();
+                            afterTorB = true;
+                        }
+                        else if (dFindDouble1 == 0)
+                        {
+                            textBox.Text = "Hatalý iþlem sayý/0: tanýmsýz";
+                            listNumbers.Clear();
+                            listOperators.Clear();
+                            afterTorB = true;
+                        }
+                        else
+                        {
+                            float sonuçDouble = dFindDouble / dFindDouble1;
+                            string sonuç = sonuçDouble.ToString();
+                            listNumbers[dFind] = sonuç;
+                            listNumbers.RemoveAt(dFind + 1);
+                            listOperators.RemoveAt(dFind);
+                        }
                     }
                 }
                 while (listOperators.Contains('+'))
@@ -396,7 +438,10 @@ namespace HesapMakinesi2
                         listOperators.RemoveAt(0);
                     }
                 }
-                textBox.Text = listNumbers[0].ToString();
+                if (!afterTorB)
+                {
+                    textBox.Text = listNumbers[0].ToString();
+                }
                 afterOperator = false;
                 afterEqual = true;
             }
@@ -405,11 +450,15 @@ namespace HesapMakinesi2
 
 
 
- 
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             afterEqual = false;
-            if (textBox.Text.Length != 0)
+            if (afterTorB)
+            {
+                textBox.Text = string.Empty;
+            }
+            if (textBox.Text.Length > 1)
             {
                 textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
                 if (textBox.Text[^1] == '+' || textBox.Text[^1] == '-' || textBox.Text[^1] == 'x' || textBox.Text[^1] == '/')
@@ -422,112 +471,22 @@ namespace HesapMakinesi2
                 }
 
             }
+            else if (textBox.Text.Length == 1)
+            {
+                textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
+            }
         }
 
-        // default deðerleri de sýfýrla
         private void btnAllClear_Click(object sender, EventArgs e)
         {
+            if (afterTorB)
+            {
+                textBox.Text = string.Empty;
+                afterTorB = false;
+            }
             textBox.Text = string.Empty;
-            bool izin = false;
             bool afterOperator = false;
             bool afterEqual = false;
-        }
-
-
-
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            text = textBox.Text;
-            while (text.Contains('x') || text.Contains('/') || text.Contains('+') || text.Contains('-'))
-            {
-                while (text.Contains('x') || text.Contains('/'))
-                {
-                    int mFind = text.IndexOf("x");
-                    int dFind = text.IndexOf("/");
-                    if (mFind < dFind)
-                    {
-                        string textCalculate1 = "";
-                        string textCalculate2 = "";
-                        while (text[mFind + 1] != '+' || text[mFind + 1] != '-' || text[mFind + 1] != 'x' || text[mFind + 1] != '/')
-                        {
-                            textCalculate1 += text[mFind + 1];
-                            text = text.Remove(mFind + 1, 1);
-                        }
-                        while ((text[mFind - 1] != '+') || (text[mFind - 1] != '-') || (text[mFind - 1] != 'x') || (text[mFind - 1] != '/'))
-                        {
-                            textCalculate2 += text[mFind - 1];
-                            text = text.Substring(mFind - 1, 1);
-                        }
-                        double doubleTextCalculate1 = double.Parse(textCalculate1);
-                        double doubleTextCalculate2 = double.Parse(textCalculate2);
-                        double araSonuç = doubleTextCalculate1 * doubleTextCalculate2;
-                        text = text.Substring(0, mFind - 1) + araSonuç.ToString() + text.Substring(mFind + 1);
-                    }
-                    else
-                    {
-                        string textCalculate1 = "";
-                        string textCalculate2 = "";
-                        while ((text[dFind + 1] != '+') || (text[dFind + 1] != '-') || (text[dFind + 1] != 'x') || (text[dFind + 1] != '/'))
-                        {
-                            textCalculate1 += text[dFind + 1];
-                            text = text.Remove(dFind + 1, 1);
-                        }
-                        while ((text[dFind - 1] != '+') || (text[dFind - 1] != '-') || (text[dFind - 1] != 'x') || (text[dFind - 1] != '/'))
-                        {
-                            textCalculate2 += text[dFind - 1];
-                            text = text.Substring(dFind - 1, 1);
-                        }
-                        double doubleTextCalculate1 = double.Parse(textCalculate1);
-                        double doubleTextCalculate2 = double.Parse(textCalculate2);
-                        double araSonuç = doubleTextCalculate1 / doubleTextCalculate2;
-                        text = text.Substring(0, dFind - 1) + araSonuç.ToString() + text.Substring(dFind + 1);
-                    }
-                }
-                while (text.Contains('+') || text.Contains('-'))
-                {
-                    int pFind = text.IndexOf("+");
-                    int sFind = text.IndexOf("-");
-                    if (pFind < sFind)
-                    {
-                        string textCalculate1 = "";
-                        string textCalculate2 = "";
-                        while ((text[pFind + 1] != '+') || (text[pFind + 1] != '-'))
-                        {
-                            textCalculate1 += text[pFind + 1];
-                            text = text.Remove(pFind + 1, 1);
-                        }
-                        while ((text[pFind - 1] != '+') || (text[pFind - 1] != '-'))
-                        {
-                            textCalculate2 += text[pFind - 1];
-                            text = text.Substring(pFind - 1, 1);
-                        }
-                        double doubleTextCalculate1 = double.Parse(textCalculate1);
-                        double doubleTextCalculate2 = double.Parse(textCalculate2);
-                        double araSonuç = doubleTextCalculate1 + doubleTextCalculate2;
-                        text = text.Substring(0, pFind - 1) + araSonuç.ToString() + text.Substring(pFind + 1);
-                    }
-                    else
-                    {
-                        string textCalculate1 = "";
-                        string textCalculate2 = "";
-                        while ((text[sFind + 1] != '+') || (text[sFind + 1] != '-') || (text[sFind + 1] != 'x') || (text[sFind + 1] != '/'))
-                        {
-                            textCalculate1 += text[sFind + 1];
-                            text = text.Remove(sFind + 1, 1);
-                        }
-                        while ((text[sFind - 1] != '+') || (text[sFind - 1] != '-') || (text[sFind - 1] != 'x') || (text[sFind - 1] != '/'))
-                        {
-                            textCalculate2 += text[sFind - 1];
-                            text = text.Substring(sFind - 1, 1);
-                        }
-                        double doubleTextCalculate1 = double.Parse(textCalculate1);
-                        double doubleTextCalculate2 = double.Parse(textCalculate2);
-                        double araSonuç = doubleTextCalculate1 - doubleTextCalculate2;
-                        text = text.Substring(0, sFind - 1) + araSonuç.ToString() + text.Substring(sFind + 1);
-                    }
-                }
-            }
         }
     }
 }
